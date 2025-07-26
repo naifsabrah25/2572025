@@ -12,6 +12,7 @@ const Header = () => {
     { name: 'حسابات مميزة', href: '/premium', icon: Crown },
     { name: 'حسابات متنوعة', href: '/variety', icon: Users },
     { name: 'شروط المتجر', href: '/terms', icon: Target },
+    { name: 'لوحة الإدارة', href: '/admin', icon: Target, isAdmin: true },
   ];
 
   return (
@@ -41,11 +42,16 @@ const Header = () => {
                   className={`flex items-center space-x-2 rtl:space-x-reverse px-4 py-2 rounded-lg transition-all duration-300 ${
                     isActive
                       ? 'bg-white text-orange-600 shadow-lg'
-                      : 'text-white hover:bg-white/20'
+                      : item.isAdmin 
+                        ? 'text-yellow-300 hover:bg-yellow-500/20 border border-yellow-500/30'
+                        : 'text-white hover:bg-white/20'
                   }`}
                 >
                   <Icon className="h-5 w-5" />
                   <span className="font-medium">{item.name}</span>
+                  {item.isAdmin && (
+                    <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                  )}
                 </Link>
               );
             })}
@@ -81,11 +87,16 @@ const Header = () => {
                       className={`flex items-center space-x-3 rtl:space-x-reverse px-4 py-3 rounded-lg transition-all duration-300 ${
                         isActive
                           ? 'bg-white text-orange-600 shadow-lg'
-                          : 'text-white hover:bg-white/20'
+                          : item.isAdmin 
+                            ? 'text-yellow-300 hover:bg-yellow-500/20 border border-yellow-500/30'
+                            : 'text-white hover:bg-white/20'
                       }`}
                     >
                       <Icon className="h-5 w-5" />
                       <span className="font-medium">{item.name}</span>
+                      {item.isAdmin && (
+                        <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                      )}
                     </Link>
                   );
                 })}
